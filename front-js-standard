@@ -1,0 +1,162 @@
+#JS
+##命名规范
+* 变量命名：小驼峰式命名方法，首字母小写（类型+对象描述）
+* 函数命名：小驼峰方式 ( 构造函数使用大驼峰命名法 ) 
+* 常量命名：全部大写 ( 使用大写字母和下划线来组合命名，下划线用以分割单词 ) 
+* 类的成员命名：
+  *  公共属性和方法 : 同变量命名方式
+  *  私有属性和方法 : 前缀为下划线(_)后面跟公共属性和方法一样的命名方式
+
+##注释规范
+* 单行注释( // )
+  * 单独一行：//(双斜线)与注释文字之间保留一个空格
+  * 在代码后面添加注释：//(双斜线)与代码之间保留一个空格。
+    ```javascript
+    // 调用了一个函数；1)单独在一行
+    setTitle();
+    var maxCount = 10; // 设置最大量；2)在代码后面注释
+    // setName(); // 3)注释代码
+    ```
+
+* 多行注释 ( /* 注释说明 */ )
+  * 若开始(/*和结束(*/)都在一行，推荐采用单行注释
+  * 若至少三行注释时，第一行为/*，最后行为*/，其他行以*开始，并且注释文字与*保留一个空格。 
+  ```javascript
+  /*
+  * 代码执行到这里后会调用setTitle()函数
+  * setTitle()：设置title的值
+  */
+  setTitle();
+  ```
+
+* 函数 ( 方法 ) 注释
+  * 多行注释的一种，包含特殊的注释要求
+  ```javascript
+  /**
+  * 函数说明
+  * @param 描述参数的信息
+  * @return  描述返回值的信息
+  * @author  描述此函数作者的信息
+  * @version  描述此函数的版本号
+  * @example  示例代码
+  */
+  ```
+
+##其他规范
+*  每句代码后（必须）加";"
+*  空格的使用
+   *  ()中的判断条件前后都(必须)加空格
+   *  ()里的判断前后(禁止)加空格，如：正确的写法: if (isOk)；不推荐的写法: if ( isOk )
+   ```javascript
+     //正确的写法
+      if (isOk) {
+          console.log("ok");
+      }
+
+      //不推荐的写法
+      if(isOk){
+          console.log("ok");
+      }
+   ```
+   *  switch中的空格
+   ```javascript
+     //正确的写法
+       switch(name) {
+           case "hotel":
+               console.log(name);
+               break;
+
+           case "moive":
+               console.log(name);
+               break;
+
+           default:
+               // code
+       }
+
+       //不推荐的写法
+       switch (name) {                     // switch 后不应该有空格, 正确的写法: switch(name) { // code
+           case "hotel":
+               console.log(name);
+           break;                          // break; 应该和console.log对齐
+           case "movie":                   // 每个case之前需要有换行
+               console.log(name);
+           break;                          // break; 应该和console.log对齐
+
+           default:
+               // code
+       }
+   ```
+
+   *  for中的空格
+   ```javascript
+        // 正确的写法
+          for (i=0, len=names.length; i < len; i++) {
+              // code
+          }
+
+          // 不推荐的写法
+          for(i = 0, len = names.length;i < len;i++) {          // for后应该有空格，每个`;`号后需要有空格，变量的赋值不应该有空格
+              // code
+          }
+   ```
+
+   * function 中的空格
+   ```javascript
+      // 正确的写法
+      function call(name) {
+
+      }
+
+      var cell = function () {
+
+      };
+
+      // 不推荐的写法
+      var call = function(name){
+          // code
+      }
+   ```
+
+   * var 中空格及定义
+     * 声明变量 = 前后（必须）添加空格
+     * 每个变量的赋值声明以,结束后（必须）换行进行下一个变量赋值声明
+     * 将所有不需要进行赋值的变量声明放置最后一行，且变量之间不需要换行
+     * 当一组变量声明完成后，空一行后编写其余代码
+   ```javascript
+   // 一个推荐的var写法组
+     function(res) {
+         var code = 1 + 1,
+             json = JSON.parse(res),
+             type, html;
+
+         // code
+     }
+   ```
+* 在同一个函数内部，局部变量的声明必须置于顶端
+* 块内函数必须用局部变量声明
+```javascript
+   // 错误的写法
+    var call = function(name) {
+        if (name == "hotel") {
+            function foo() {
+                console.log("hotel foo");
+            }
+        }
+
+        foo && foo();
+    }
+
+    // 推荐的写法
+    var call = function(name) {
+        var foo;
+
+        if (name == "hotel") {
+            foo = function() {
+                console.log("hotel foo");
+            }
+        }
+
+        foo && foo();
+    }
+```
